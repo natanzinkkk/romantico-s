@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mensagem Especial</title>
+  <style>
+    body {
+      background: #fff0f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #texto {
+      font-size: 1.5rem;
+      color: #ff4d6d;
+      margin-top: 30px;
+      display: none;
+      transition: all 0.5s ease-in-out;
+      text-align: center;
+      max-width: 80%;
+      line-height: 1.6;
+    }
+
+    #botao {
+      padding: 15px 30px;
+      background-color: #ff4d6d;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: fall linear forwards;
+      z-index: -1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="botao">Clique aqui 💖</button>
+  <div id="texto"></div>
+
+  <script>
+    const botao = document.getElementById("botao");
+    const texto = document.getElementById("texto");
+
+    botao.addEventListener("click", () => {
+      botao.style.display = "none";
+      texto.style.display = "block";
+      texto.textContent = "Você é muito especial! 💕";
+
+      // Corações caindo
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        heart.innerText = "💖";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }, 300);
+
+      // Após 3 segundos mostrar o texto completo
+      setTimeout(() => {
+        texto.innerHTML = `
+          Essa página é só pra te lembrar o quanto você é especial.<br><br>
+          Eu adoro estar com você, ouvir sua voz, dar risada do nada, e até só ficar em silêncio do seu lado.<br><br>
+          Você tem um jeitinho único que me deixa leve, me faz sorrir e querer estar por perto sempre.<br><br>
+          Não importa o que o futuro traga, só de viver o agora com você já vale muito.<br><br>
+          <strong>Obrigado por ser essa pessoa incrível que você é. 💖</strong>
+        `;
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
