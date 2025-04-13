@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pra Você, Maria</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffd6e0, #ffe6f0);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #cc0052;
+      text-align: center;
+      padding: 30px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    p {
+      font-size: 1.4em;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    .heart {
+      color: red;
+      font-size: 2em;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .signature {
+      margin-top: 40px;
+      font-style: italic;
+      font-size: 1.1em;
+      color: #99004d;
+    }
+
+    button {
+      background-color: #ff6699;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e65c87;
+    }
+
+    #mensagemExtra {
+      margin-top: 25px;
+      display: none;
+      font-size: 1.3em;
+      color: #b3005c;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fragment {
+      position: absolute;
+      font-size: 20px;
+      color: red;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      to {
+        transform: translate(var(--x), var(--y)) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Oi Maria!</h1>
+  <p class="heart" id="explodingHeart">&hearts;</p>
+
+  <div class="box">
+    <p>Essa página é só pra te lembrar o quanto você é especial.</p>
+    <p>Eu adoro estar com você, ouvir sua voz, dar risada do nada, e até só ficar em silêncio do seu lado.</p>
+    <p>Você tem um jeitinho único que me deixa leve, me faz sorrir e querer estar por perto sempre.</p>
+    <p>Não importa o que o futuro traga, só de viver o agora com você já vale muito.</p>
+    <p>Obrigado por ser essa pessoa incrível que você é.</p>
+  </div>
+
+  <button onclick="explodirCoracao()">Clique aqui</button>
+  <p id="mensagemExtra">Você é a melhor parte dos meus dias. Te adoro demais!</p>
+
+  <p class="signature">– Com carinho, Natan</p>
+
+  <script>
+    function explodirCoracao() {
+      const heart = document.getElementById("explodingHeart");
+      heart.style.display = "none";
+      const count = 20;
+
+      for (let i = 0; i < count; i++) {
+        const frag = document.createElement("div");
+        frag.className = "fragment";
+        frag.style.left = "50%";
+        frag.style.top = "200px";
+        frag.innerHTML = "&hearts;";
+        frag.style.setProperty('--x', (Math.random() * 400 - 200) + 'px');
+        frag.style.setProperty('--y', (Math.random() * 400 - 200) + 'px');
+        document.body.appendChild(frag);
+
+        setTimeout(() => frag.remove(), 1000);
+      }
+
+      document.getElementById("mensagemExtra").style.display = "block";
+    }
+  </script>
+</body>
+</html>
